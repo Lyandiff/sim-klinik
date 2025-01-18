@@ -27,7 +27,7 @@ jobs:
       - name: Change Basename
         run: |
           cd fe_simklinik/src
-          sed -i -e 's/<BrowserRouter>/<BrowserRouter basename=\"/${{ github.event.repository.name }}\">/g' main.jsx
+          sed -i -e 's|<BrowserRouter>|<BrowserRouter basename=\"/${{ github.event.repository.name }}\">|g' main.jsx
       - name: Install Dependencies
         run: |
           cd fe_simklinik
