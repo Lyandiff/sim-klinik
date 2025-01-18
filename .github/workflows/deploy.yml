@@ -27,13 +27,7 @@ jobs:
       - name: Change Basename
         run: |
           cd fe_simklinik/src
-          mv main.jsx main2.jsx
-          touch main.jsx
-          line=$(grep -ne "<BrowserRouter>" main2.jsx | cut -f1 -d:)
-          full=$(wc -l < main2.jsx)
-          head -n $((line-1)) main2.jsx >> main.jsx
-          echo -e "<BrowserRouter basename=\"/${{ github.event.repository.name }}\">" >> main.jsx
-          tail -n $((full-line)) main2.jsx >> main.jsx
+          sed -i -e 's/<BrowserRouter>/<BrowserRouter basename=\"/${{ github.event.repository.name }}\">/g' main.jsx
       - name: Install Dependencies
         run: |
           cd fe_simklinik
